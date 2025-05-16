@@ -195,7 +195,7 @@ uint8_t Track_Line(void)
 			break ;
 		
 		
-		case 00111:
+		case 111:
 			break ;
 		case 11110:
 		case 1111:
