@@ -7,7 +7,7 @@
 
 #define Init_LoopTimes		8000	//初始化测定白色对应值时的循环次数
 #define Track_Filter_Times	20		//平均值滤波次数
-#define Window_Width		50-1	//滑动平均值滤波次数（滑动窗口大小）
+#define Window_Width		50	//滑动平均值滤波次数（滑动窗口大小）
 
 unsigned short Is_White[5] = {0};						//白色初始值
 unsigned short Is_Red[5] = {0};							//红色初始值
@@ -102,13 +102,13 @@ uint16_t Track_Filter(uint8_t AD_channel)
 	static uint8_t location = 0;
 	if(flag == 0){
 		flag = 1;
-		for(uint8_t i=0; i<Window_Width+1; i++){
+		for(uint8_t i=0; i<Window_Width; i++){
 			slide_window [i] = AD_Value [AD_channel];
 			temp_sum += AD_Value [AD_channel];
 		}
-		AD_filter = temp_sum / (Window_Width+1) ;
+		AD_filter = temp_sum / Window_Width ;
 	}else {
-		if(location >= Window_Width ){
+		if(location >= Window_Width-1 ){
 			slide_window [location] = AD_Value [AD_channel];
 			location = 0;
 		}else{
@@ -118,7 +118,7 @@ uint16_t Track_Filter(uint8_t AD_channel)
 		for(uint8_t j=0; j<Window_Width; j++){
 			temp_sum += slide_window [j];
 		}
-		AD_filter = temp_sum / (Window_Width+1) ;
+		AD_filter = temp_sum / Window_Width ;
 	}
 	
 	return AD_filter ;
