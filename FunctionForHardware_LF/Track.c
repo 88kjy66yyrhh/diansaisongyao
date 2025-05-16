@@ -161,7 +161,7 @@ uint8_t Track_Line(void)
 		sensor_Line += sensor_state [4-i] * pow (10, i);
 	}
 	switch (sensor_Line){
-		case 00000:
+		case 0:
 			Line_state = Line_White ;
 			break;
 		case 100:	//00100
