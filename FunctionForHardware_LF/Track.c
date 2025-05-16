@@ -106,7 +106,7 @@ uint16_t Track_Filter(uint8_t AD_channel)
 			slide_window [i] = AD_Value [AD_channel];
 			temp_sum += AD_Value [AD_channel];
 		}
-		AD_filter = temp_sum / Window_Width ;
+		AD_filter = temp_sum / (Window_Width+1) ;
 	}else {
 		if(location >= Window_Width ){
 			slide_window [location] = AD_Value [AD_channel];
@@ -118,7 +118,7 @@ uint16_t Track_Filter(uint8_t AD_channel)
 		for(uint8_t j=0; j<Window_Width; j++){
 			temp_sum += slide_window [j];
 		}
-		AD_filter = temp_sum / Window_Width ;
+		AD_filter = temp_sum / (Window_Width+1) ;
 	}
 	
 	return AD_filter ;
