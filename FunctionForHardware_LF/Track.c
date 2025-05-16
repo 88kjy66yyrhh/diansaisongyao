@@ -3,22 +3,22 @@
 #include "AD.h"
 #include <math.h>
 #include "Delay.h"
-#include "OLED.h"
+//#include "OLED.h"
 
-#define Init_LoopTimes		8000	//³õÊ¼»¯²â¶¨°×É«¶ÔÓ¦ÖµÊ±µÄÑ­»·´ÎÊı
-#define Track_Filter_Times	20		//Æ½¾ùÖµÂË²¨´ÎÊı
-#define Window_Width		50-1	//»¬¶¯Æ½¾ùÖµÂË²¨´ÎÊı£¨»¬¶¯´°¿Ú´óĞ¡£©
+#define Init_LoopTimes		8000	//åˆå§‹åŒ–æµ‹å®šç™½è‰²å¯¹åº”å€¼æ—¶çš„å¾ªç¯æ¬¡æ•°
+#define Track_Filter_Times	20		//å¹³å‡å€¼æ»¤æ³¢æ¬¡æ•°
+#define Window_Width		50-1	//æ»‘åŠ¨å¹³å‡å€¼æ»¤æ³¢æ¬¡æ•°ï¼ˆæ»‘åŠ¨çª—å£å¤§å°ï¼‰
 
-unsigned short Is_White[5] = {0};						//°×É«³õÊ¼Öµ
-unsigned short Is_Red[5] = {0};							//ºìÉ«³õÊ¼Öµ
-unsigned short Is_Black[5] = {500,500,500,500,500};		//ºÚÉ«³õÊ¼Öµ
+unsigned short Is_White[5] = {0};						//ç™½è‰²åˆå§‹å€¼
+unsigned short Is_Red[5] = {0};							//çº¢è‰²åˆå§‹å€¼
+unsigned short Is_Black[5] = {500,500,500,500,500};		//é»‘è‰²åˆå§‹å€¼
 
-unsigned short sensor_state[5] = {0};	//´«¸ĞÆ÷·´À¡Öµ
+unsigned short sensor_state[5] = {0};	//ä¼ æ„Ÿå™¨åé¦ˆå€¼
 
-uint16_t white_min[5] = {2000,2000,2000,2000,2000};	//°×É«ÖµÏÂÏŞ
+uint16_t white_min[5] = {2000,2000,2000,2000,2000};	//ç™½è‰²å€¼ä¸‹é™
 
 /**
-  * @breuf  	Ñ­¼£³õÊ¼»¯
+  * @breuf  	å¾ªè¿¹åˆå§‹åŒ–
   * @param  	void
   * @retval 	void
   */
@@ -80,9 +80,9 @@ void Track_Init(void)
 }
 
 /**
-  * @breuf  	AD¶ÁÈ¡ÖµÂË²¨
-  * @param  	ADÍ¨µÀ
-  * @retval 	ÂË²¨ºóµÄÖµ
+  * @breuf  	ADè¯»å–å€¼æ»¤æ³¢
+  * @param  	ADé€šé“
+  * @retval 	æ»¤æ³¢åçš„å€¼
   */
 uint16_t Track_Filter(uint8_t AD_channel)
 {
@@ -124,7 +124,7 @@ uint16_t Track_Filter(uint8_t AD_channel)
 }
 
 /**
-  * @breuf  	µ¥¸ö´«¸ĞÆ÷·´À¡µÄ×´Ì¬
+  * @breuf  	å•ä¸ªä¼ æ„Ÿå™¨åé¦ˆçš„çŠ¶æ€
   * @param  	
   * @retval 	
   */
@@ -148,9 +148,9 @@ void Track_State(void)
 }
 
 /**
-  * @breuf  	Ñ²Ïß·´À¡
+  * @breuf  	å·¡çº¿åé¦ˆ
   * @param  	void
-  * @retval 	Ñ²Ïß×´Ì¬£¬¾ßÌå·µ»ØÖµ¶ÔÓ¦Çé¿ö¼ûTrack.hÖĞµÄºê¶¨Òå
+  * @retval 	å·¡çº¿çŠ¶æ€ï¼Œå…·ä½“è¿”å›å€¼å¯¹åº”æƒ…å†µè§Track.hä¸­çš„å®å®šä¹‰
   */
 uint8_t Track_Line(void)
 {
@@ -214,7 +214,7 @@ uint8_t Track_Line(void)
 			break ;
 	}
 	
-	OLED_ShowNum (48,8,sensor_Line ,5,OLED_6X8 );
+//	OLED_ShowNum (48,8,sensor_Line ,5,OLED_6X8 );
 	
 	return Line_state ;
 }
