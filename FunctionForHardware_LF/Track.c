@@ -102,7 +102,7 @@ uint16_t Track_Filter(uint8_t AD_channel)
 	static uint8_t location = 0;
 	if(flag == 0){
 		flag = 1;
-		for(uint8_t i=0; i<Window_Width; i++){
+		for(uint8_t i=0; i<Window_Width+1; i++){
 			slide_window [i] = AD_Value [AD_channel];
 			temp_sum += AD_Value [AD_channel];
 		}
